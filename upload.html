@@ -1,0 +1,97 @@
+<!doctype html><html lang="de-CH"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Unterlagen-Upload</title>
+  <style>/* styles trimmed for brevity in this cell, identical to previous attempt */
+    :root{--bg:#ffffff;--text:#1b1f23;--muted:#5c6b73;--brand:#0A3D62;--brand-2:#00B8A9;--accent:#F7B32B;--surface:#f6f8fa;--shadow:0 10px 30px rgba(10,61,98,.12);--radius:14px;--maxw:1100px}
+    @media (prefers-color-scheme: dark){:root{--bg:#0f1216;--text:#e9eef2;--muted:#a6b2bb;--surface:#151a20;--shadow:0 10px 30px rgba(0,0,0,.45)}}
+    *{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,"Helvetica Neue",Arial,"Noto Sans",Ubuntu,sans-serif;line-height:1.5}
+    a{color:var(--brand);text-decoration:underline;text-underline-offset:2px}
+    header{position:sticky;top:0;background:rgba(255,255,255,.75);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid rgba(0,0,0,.06);z-index:10}
+    @media (prefers-color-scheme: dark){header{background:rgba(15,18,22,.6);border-bottom-color:rgba(255,255,255,.06)}}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:10px}
+    .brand{display:flex;gap:12px;align-items:center;text-decoration:none}.brand span{font-weight:700;letter-spacing:.2px;color:var(--text)}
+    .pill{display:inline-block;padding:8px 12px;background:var(--surface);border-radius:999px;font-size:14px;color:var(--muted)}
+    .cta{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:none;cursor:pointer;font-weight:600}
+    .cta.primary{background:var(--brand);color:#fff;box-shadow:var(--shadow)}.cta.ghost{background:transparent;color:var(--brand);border:2px solid var(--brand)}
+    .hero{padding:64px 0 28px}.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+    @media (max-width:900px){.hero-grid{grid-template-columns:1fr}}.badge{display:inline-flex;gap:8px;align-items:center;background:var(--surface);padding:8px 12px;border-radius:999px;font-size:14px;color:var(--muted)}
+    h1{font-size:clamp(34px,4.2vw,56px);line-height:1.05;margin:16px 0 8px}.lead{font-size:clamp(18px,1.6vw,22px);color:var(--muted);max-width:48ch}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}@media (max-width:900px){.cards{grid-template-columns:1fr}}
+    .card{background:var(--surface);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.05)}.card h3{margin:6px 0 8px}
+    .foot{border-top:1px solid rgba(0,0,0,.07);padding:26px 0 50px;margin-top:10px}.foot .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:18px}
+    @media (max-width:900px){.foot .cols{grid-template-columns:1fr}}.legal{font-size:13px;color:var(--muted);margin-top:10px}
+    .chip{display:inline-flex;gap:8px;align-items:center;background:var(--surface);padding:8px 10px;border-radius:999px;font-size:13px}
+    .lang{display:inline-flex;gap:6px;align-items:center;background:var(--surface);padding:6px 10px;border-radius:999px}.lang button{border:none;background:transparent;cursor:pointer;font-weight:700}.lang .active{color:#fff;background:var(--brand);padding:6px 10px;border-radius:999px}
+    .cookie-banner{position:fixed;left:16px;right:16px;bottom:16px;background:var(--surface);color:var(--text);border:1px solid rgba(0,0,0,.08);border-radius:12px;box-shadow:var(--shadow);padding:14px;z-index:9999;display:none}
+    .cookie-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.cookie-banner p{margin:0}.cookie-banner button{padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:600}.cookie-accept{background:var(--brand);color:#fff}.cookie-decline{background:transparent;border:2px solid var(--brand);color:var(--brand)}
+    .drop{border:2px dashed var(--brand); border-radius:14px; padding:26px; background:var(--surface); text-align:center}.drop.drag{background:#eaf6ff}.files{margin-top:12px;display:grid;gap:8px}.file{display:flex;justify-content:space-between;align-items:center;background:#fff;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,.06)}
+    @media (prefers-color-scheme: dark){.file{background:#0c0f13}}
+  </style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="index.html"><div style="width:38px;height:38px;border-radius:10px;background:conic-gradient(from 210deg at 50% 50%, var(--accent), var(--brand-2), var(--brand));box-shadow:var(--shadow)"></div><span>Fidelity Hand</span></a>
+<nav><a class="pill" href="impressum.html" data-i18n="nav_imprint">Impressum</a><a class="pill" href="datenschutz.html" data-i18n="nav_privacy">Datenschutz</a></nav>
+<div class="lang"><button id="lang-de" class="active">DE</button><button id="lang-en">EN</button></div></div></header>
+<main class="wrap" style="padding:40px 0">
+  <h1 data-i18n="upload_title">Unterlagen-Upload</h1>
+  <p class="lead" data-i18n="upload_intro">Sicher und einfach: Laden Sie Ihre Belege/Dateien hoch. Ohne Anmeldung.</p>
+  <div class="card">
+    <h3 data-i18n="upload_buttons">Externe Upload-Optionen</h3>
+    <p class="legal" data-i18n="upload_note">Hinweis: In dieser Demoversion werden Dateien nicht auf einen Server übertragen. Hinterlegen Sie unten einen Drive/Dropbox-Request-Link – oder richten Sie einen Upload-Endpunkt ein.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px">
+      <a class="cta ghost" id="btn-drive" href="#" target="_blank" rel="noopener">Google Drive Request</a>
+      <a class="cta ghost" id="btn-dropbox" href="#" target="_blank" rel="noopener">Dropbox File Request</a>
+      <a class="cta ghost" id="btn-onedrive" href="#" target="_blank" rel="noopener">OneDrive Request</a>
+    </div>
+    <div style="margin-top:10px;display:grid;gap:8px">
+      <input id="drive-url" placeholder="Drive-Request-Link / paste link" />
+      <input id="dropbox-url" placeholder="Dropbox-Request-Link / paste link" />
+      <input id="onedrive-url" placeholder="OneDrive-Request-Link / paste link" />
+      <button class="cta primary" id="apply-links">Links übernehmen / Apply links</button>
+    </div>
+  </div>
+  <section style="margin-top:20px">
+    <div class="card">
+      <h3>Direkt-Upload (Demo, ohne Server)</h3>
+      <div id="drop" class="drop" data-i18n="upload_drop">Dateien hierher ziehen oder klicken, um auszuwählen</div>
+      <input type="file" id="file-input" multiple style="display:none" />
+      <div class="files" id="files"></div>
+      <div style="display:flex;gap:10px;margin-top:12px">
+        <button class="cta primary" id="send" data-i18n="upload_send">Anfragen</button>
+        <button class="cta ghost" id="clear" data-i18n="upload_clear">Auswahl leeren</button>
+      </div>
+      <p class="legal">Optionaler Endpunkt (POST): <code>/api/upload</code></p>
+    </div>
+  </section>
+</main>
+
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie-Hinweis">
+  <p data-i18n="cookie_text">Wir verwenden nur notwendige Cookies für den Betrieb der Seite. Optionale Cookies (z. B. Analytics) setzen wir nur mit Ihrer Einwilligung. Details in der <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
+  <div class="cookie-actions">
+    <button id="cookie-accept" class="cookie-accept" data-i18n="cookie_accept">Alle akzeptieren</button>
+    <button id="cookie-decline" class="cookie-decline" data-i18n="cookie_decline">Nur notwendige</button>
+  </div>
+</div>
+
+<script>const I18N={de:{hero_badge:"Treuhand mit Wortspiel & Handwerk",hero_title:"Treu? Hand drauf.",hero_lead:"Wir bringen Zahlen zum Lächeln: Buchhaltung, Lohn, Steuern & Beratung – professionell, pragmatisch, mit einem Augenzwinkern.",btn_cta:"Kostenlose Erstberatung",btn_services:"Leistungen ansehen",nav_services:"Leistungen",nav_why:"Warum wir",nav_team:"Team",nav_contact:"Kontakt",nav_imprint:"Impressum",nav_privacy:"Datenschutz",nav_upload:"Unterlagen-Upload",cards_1_h:"Von Beleg bis Bilanz",cards_1_p:"Laufende Fibu, Debi/Kredi, Abschlüsse nach Swiss GAAP FER/OR – sauber, zeitnah, prüfungstauglich.",cards_2_h:"Gehalt mit Gehalt",cards_2_p:"Lohnläufe, Quellensteuer, UVG/KTG/ALV, AHV – rechtskonform und pünktlich.",cards_3_h:"Mehr Netto vom Brutto",cards_3_p:"MWST, Unternehmens- & Privatsteuern, Optimierung, Umstrukturierungen – wir denken voraus.",section_services:"Unsere Leistungen",section_why:"Warum Fidelity Hand?",section_team:"Wer wir sind",section_contact:"Kontakt",cookie_text:"Wir verwenden nur notwendige Cookies für den Betrieb der Seite. Optionale Cookies (z. B. Analytics) setzen wir nur mit Ihrer Einwilligung. Details in der <a href='datenschutz.html' target='_blank' rel='noopener'>Datenschutzerklärung</a>.",cookie_accept:"Alle akzeptieren",cookie_decline:"Nur notwendige",contact_write:"Schreiben Sie uns",contact_hint:"Hinweis: Mit Klick wird Ihr E-Mail-Programm geöffnet (kein Tracking, kein Serverformular).",find_us:"So finden Sie uns",footer_rights:"Alle Rechte vorbehalten.",back_home:"Zurück zur Startseite",upload_title:"Unterlagen-Upload",upload_intro:"Sicher und einfach: Laden Sie Ihre Belege/Dateien hoch. Ohne Anmeldung.",upload_drop:"Dateien hierher ziehen oder klicken, um auszuwählen",upload_note:"Hinweis: In dieser Demoversion werden Dateien nicht auf einen Server übertragen. Hinterlegen Sie unten einen Drive/Dropbox-Request-Link – oder richten Sie einen Upload-Endpunkt ein.",upload_buttons:"Externe Upload-Optionen",upload_send:"Anfragen",upload_clear:"Auswahl leeren",imprint_title:"Impressum",privacy_title:"Datenschutzerklärung"},en:{hero_badge:"Accounting with wordplay & craftsmanship",hero_title:"Trust? Shake on it.",hero_lead:"We make numbers smile: bookkeeping, payroll, taxes & advisory – professional, pragmatic, with a wink.",btn_cta:"Free initial consult",btn_services:"See services",nav_services:"Services",nav_why:"Why us",nav_team:"Team",nav_contact:"Contact",nav_imprint:"Imprint",nav_privacy:"Privacy",nav_upload:"Upload documents",cards_1_h:"From receipt to balance sheet",cards_1_p:"Bookkeeping, AR/AP, Swiss GAAP FER/CO closings – neat, timely, audit-ready.",cards_2_h:"Payroll with poise",cards_2_p:"Monthly payroll, withholding tax, insurances – compliant and on time.",cards_3_h:"More net from gross",cards_3_p:"VAT, corporate & personal taxes, optimisation, reorganisations – we think ahead.",section_services:"Our services",section_why:"Why Fidelity Hand?",section_team:"Who we are",section_contact:"Contact",cookie_text:"We use only necessary cookies. Optional cookies (e.g., analytics) are used only with your consent. Details in our <a href='datenschutz.html' target='_blank' rel='noopener'>Privacy Policy</a>.",cookie_accept:"Accept all",cookie_decline:"Essentials only",contact_write:"Write to us",contact_hint:"Note: Clicking opens your email app (no tracking, no server form).",find_us:"How to find us",footer_rights:"All rights reserved.",back_home:"Back to homepage",upload_title:"Document Upload",upload_intro:"Secure and simple: upload your receipts/files. No login required.",upload_drop:"Drop files here or click to choose",upload_note:"Note: This demo does not send files to a server. Provide a Drive/Dropbox request link below – or configure an upload endpoint.",upload_buttons:"External upload options",upload_send:"Submit request",upload_clear:"Clear selection",imprint_title:"Imprint",privacy_title:"Privacy Policy"}};function setLang(lang){{const d=I18N[lang]||I18N.de;document.documentElement.lang=(lang==='en')?'en':'de-CH';document.querySelectorAll('[data-i18n]').forEach(el=>{{const k=el.getAttribute('data-i18n');if(d[k]) el.innerHTML=d[k];}});localStorage.setItem('fh_lang',lang);document.querySelectorAll('.lang button').forEach(b=>b.classList.remove('active'));const btn=document.getElementById('lang-'+lang);if(btn) btn.classList.add('active');}}(function(){{const saved=localStorage.getItem('fh_lang')||'de';setLang(saved);document.addEventListener('click',(e)=>{{if(e.target.id==='lang-de') setLang('de'); if(e.target.id==='lang-en') setLang('en');}});}})();</script>
+
+<script>(function(){const KEY='fh_cookie_consent';const saved=localStorage.getItem(KEY);const banner=document.getElementById('cookie-banner');function show(){banner.style.display='block';}function hide(){banner.style.display='none';}function enableOptional(){}if(saved==='accepted'){enableOptional();}if(!saved){show();}document.getElementById('cookie-accept').addEventListener('click',()=>{localStorage.setItem(KEY,'accepted');hide();enableOptional();});document.getElementById('cookie-decline').addEventListener('click',()=>{localStorage.setItem(KEY,'declined');hide();});})();</script>
+
+<script>
+document.getElementById('apply-links').addEventListener('click',function(){{
+  var d=document.getElementById('drive-url').value.trim();
+  var x=document.getElementById('dropbox-url').value.trim();
+  var o=document.getElementById('onedrive-url').value.trim();
+  if(d) document.getElementById('btn-drive').href=d;
+  if(x) document.getElementById('btn-dropbox').href=x;
+  if(o) document.getElementById('btn-onedrive').href=o;
+}});
+var drop=document.getElementById('drop'); var input=document.getElementById('file-input'); var list=document.getElementById('files'); var files=[];
+function render(){{ list.innerHTML=''; files.forEach(function(f,i){{var row=document.createElement('div'); row.className='file'; row.innerHTML='<span>'+f.name+' ('+Math.round(f.size/1024)+' KB)</span><button data-i="'+i+'">✕</button>'; row.querySelector('button').addEventListener('click',function(){{files.splice(i,1);render();}}); list.appendChild(row);}}); }}
+drop.addEventListener('click',function(){{input.click();}});
+['dragenter','dragover'].forEach(function(ev){{ drop.addEventListener(ev,function(e){{e.preventDefault(); drop.classList.add('drag');}}); }});
+['dragleave','drop'].forEach(function(ev){{ drop.addEventListener(ev,function(e){{e.preventDefault(); drop.classList.remove('drag');}}); }});
+drop.addEventListener('drop',function(e){{ files=files.concat(Array.from(e.dataTransfer.files)); render(); }});
+input.addEventListener('change',function(e){{ files=files.concat(Array.from(e.target.files)); render(); }});
+document.getElementById('clear').addEventListener('click',function(){{ files=[]; render(); }});
+document.getElementById('send').addEventListener('click',function(){{ if(files.length===0){{ alert('Keine Dateien / No files selected'); return; }} alert('Demo: Kein Server-Endpunkt konfiguriert. Bitte oben Request-Link verwenden.'); }});
+</script>
+</body></html>
